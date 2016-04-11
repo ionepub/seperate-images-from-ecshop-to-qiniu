@@ -22,14 +22,14 @@ use Qiniu\Storage\UploadManager;
 // 本地文件地址参数 文件地址或地址数组
 if(isset($qiniu_file_path) && ($qiniu_file_path != "" || (is_array($qiniu_file_path) && !empty($qiniu_file_path)))){
 	// 需要填写你的 Access Key 和 Secret Key
-	$accessKey = 'P8SW3jzO9NLpRgPU48wA8mK3MFBvudiFIPbHusEY';
-	$secretKey = 'brrr6sueEC9MJMGsd2vVshJFJWVvw570YFgo_ymD';
+	$accessKey = '';
+	$secretKey = '';
 
 	// 构建鉴权对象
 	$auth = new Auth($accessKey, $secretKey);
 
 	// 要上传的空间
-	$bucket = 'theron';
+	$bucket = 'bucketname';
 
 	// 生成上传 Token
 	$token = $auth->uploadToken($bucket);

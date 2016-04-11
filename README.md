@@ -285,4 +285,21 @@ function handle_gallery_image($goods_id, $image_files, $image_descs, $image_urls
 
 ## 前台模板修改
 
-//todo
+首先在公共文件`includes/lib_main.php`里找到function assign_template加上这句：
+
+```php
+$smarty->assign('qiniu_site_url', $GLOBALS['_CFG']['qiniu_site_url']);
+```
+
+这样能保证在所有的模板页面都能使用qiniu_site_url这个变量。如果不希望这样，可以在相应的文件里添加，比如goods.php, index.php等。
+
+接着找到相应的模板文件，在img标签的src属性前加上七牛的域名地址即可：
+
+```html
+<img src="{$qiniu_site_url}{$goods.thumb}" alt="">
+```
+
+TIP: 有一个要注意的问题就是，在后台商店设置中填写七牛的域名地址时，最后加上一个/，因为在ecshop的模板中，基本上所有的图片路径前都没有加上这个/，如果忘记加上这个，渲染出来的地址可能就是类似这样的：
+
+`www.qiniusiteurl.comimages/goods_thumb/1234.jpg`
+
